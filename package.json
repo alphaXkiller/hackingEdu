@@ -1,0 +1,19 @@
+{
+  "name": "flashtalk",
+  "version": "0.0.0",
+  "description": "a webapp can store questions and answer, then a speaker will say it",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Franklin Huang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "bower": "^1.6.3",
+    "koa": "^1.1.1",
+    "koa-bodyparser": "^2.0.1",
+    "koa-static": "^1.5.1",
+    "watson-developer-cloud": "^0.10.6"
+  }
+}
