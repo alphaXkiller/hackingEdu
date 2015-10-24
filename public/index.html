@@ -2,9 +2,9 @@
 <html>
 <head>
 	<title>Flash Talk</title>
-	<link rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="vendors/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-app="hackingEdu">
 	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
 			<a href="#" class="navbar-brand">
@@ -13,6 +13,46 @@
 		</div>
 	</nav>
 
+	<main ng-controller="MainCtrl">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-4">
+					<form ng-submit="submit()">
+						<div class="form-group">
+							<label>Question</label>
+							<input ng-model="Q" type="text" class="form-control" placeholder="Write your question here">
+						</div>
+						<div class="form-group">
+							<label>Answer</label>
+							<input ng-model="A" type="text" class="form-control" placeholder="Write your answer here">
+						</div>
+						<button type="submit" class="btn btn-default">Save Question</button>
+					</form>
+				</div>
+				<div class="col-sm-8">
+					<label>Q&A</label>
+					<div class="row" ng-repeat="q in questions track by $index" ng-mouseenter="showButton=true" ng-mouseleave="showButton=!showButton">
+						<div class="col-xs-10">
+							<div>Question {{$index}}:</div>
+							<div>{{q.question}}</div>
+							<div>{{q.answer}}</div>
+							<br>							
+						</div>
+						<div class="col-xs-2">
+							<button class="btn btn-default btn-md ng-hidden" ng-show="showButton" ng-click="removeQuestion($index)">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
 <script type="text/javascript" src='vendors/jquery/dist/jquery.min.js'></script>
+<script type="text/javascript" src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src='vendors/angular/angular.min.js'></script>
+
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
