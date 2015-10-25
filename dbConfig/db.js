@@ -2,9 +2,12 @@
 
 var mongoose = require('mongoose');
 var queModel = require('../model/questions');
-var port = process.env.port || 3000;
 
-mongoose.connect('mongodb://localhost/hackingEdu');
+mongoose.connect('mongodb://'
+	.concat("hackingedu"
+		.concat(':'
+			.concat("test123"
+				.concat("@c499.candidate.56.mongolayer.com:10499,candidate.55.mongolayer.com:10368,candidate.56.mongolayer.com:10499/hackingEdu?replicaSet=set-562ca9640c81ada022000510")))));
 
 mongoose.connection.on('error', function (err) {
 	console.log('DB Connection err: ' + err);

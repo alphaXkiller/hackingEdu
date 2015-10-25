@@ -36,7 +36,6 @@ module.exports = function (router) {
 			data.forEach(function (question, index) {
 				params.text = params.text.concat(question.question).concat(question.answer);
 			});
-			console.log(params);
 			textToSpeech.synthesize(params).pipe(fs.createWriteStream('public/media/notes.wav'));
 		});
 
@@ -47,16 +46,10 @@ module.exports = function (router) {
 	router.del('/api/db/remove/', function* () {
 		var delQuestion = yield parse.json(this);
 
-		yield Questions.find({_id:delQuestion._id}, function (err, data) {
-			if (err) throw err;
-			console.log(data);
-		})
 		yield Questions.findOneAndRemove({_id: delQuestion._id}, function	(err) {
 			if (err) throw err;
 			console.log('deleted');
 		});
-
-		console.log(this);
 
 		this.response.status = 200;
 	});
