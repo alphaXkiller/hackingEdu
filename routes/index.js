@@ -5,6 +5,16 @@ var Questions = require('../model/questions');
 var parse = require('co-body');
 var watson = require('watson-developer-cloud');
 var fs = require('fs');
+var textToSpeech = watson.text_to_speech({
+	username: 'ab05588c-3b05-4191-b89c-505ec7a54bd5',
+	password: 'HV45jhEDMob2',
+	version: 	'v1'
+});
+var params = {
+	text: "",
+	voice: "en-US_MichaelVoice",
+	accept: 'audio/wav'
+};
 
 module.exports = function (router) {
 	router.post('/api/db/post', function* () {
@@ -19,25 +29,15 @@ module.exports = function (router) {
 
 	router.get('/api/db', function* () {
 		var questions = {};
-		var textToSpeech = watson.text_to_speech({
-			username: 'cd8c307b-2707-4a7c-a63d-c8c3957a0e5e',
-			password: 'ogOpRc4d0rV4',
-			version: 	'v1'
-		});
-		var params = {
-			text: "Whats the name of your university?University of Nevada, Las Vegaswhere are you?In San Mateo",
-			voice: "en-US_MichaelVoice",
-			accept: 'audio/wav'
-		};
 
 		yield Questions.find({}, function (err, data) {
 			if (err) throw err;
 			questions.questions = data;
-			// data.forEach(function (question, index) {
-			// 	params.text = params.text.concat(question.question).concat(question.answer);
-			// })
+			data.forEach(function (question, index) {
+				params.text = params.text.concat(question.question).concat(question.answer);
+			});
 			console.log(params);
-			textToSpeech.synthesize(params).pipe(fs.createWriteStream('output.wav'));
+			textToSpeech.synthesize(params).pipe(fs.createWriteStream('public/media/notes.wav'));
 		});
 
 		this.body = questions;

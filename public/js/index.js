@@ -23,7 +23,7 @@ app.controller('MainCtrl', function ($scope, $http, ngAudio) {
 			});
 	}
 
-	$scope.sound = ngAudio.load("media/photograph.mp3");
+	$scope.sound = ngAudio.load("media/notes.ogg");
 	$scope.play = function () {
 		$scope.sound.play();
 	}
