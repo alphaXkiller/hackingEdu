@@ -1,6 +1,6 @@
-var app = angular.module('hackingEdu', []);
+var app = angular.module('hackingEdu', ['ngAudio']);
 
-app.controller('MainCtrl', function ($scope, $http) {
+app.controller('MainCtrl', function ($scope, $http, ngAudio) {
 
 	listQuestions();
 
@@ -21,6 +21,19 @@ app.controller('MainCtrl', function ($scope, $http) {
 			function (succ) {
 				$scope.questions.splice(index, 1);
 			});
+	}
+
+	$scope.sound = ngAudio.load("media/photograph.mp3");
+	$scope.play = function () {
+		$scope.sound.play();
+	}
+
+	$scope.pause = function () {
+		$scope.sound.pause();
+	}
+
+	$scope.stop = function () {
+		$scope.sound.stop();
 	}
 
 	function listQuestions () {

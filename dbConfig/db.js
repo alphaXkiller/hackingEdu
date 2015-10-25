@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var queModel = require('../model/questions');
+var port = process.env.port || 3000;
 
 mongoose.connect('mongodb://localhost/hackingEdu');
 

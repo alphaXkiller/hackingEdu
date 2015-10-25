@@ -5,12 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="vendors/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body ng-app="hackingEdu">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default">
+	<div>
 		<div class="navbar-header">
 			<a href="#" class="navbar-brand">
-				Flash Talk test
+				<img src="img/FlashTalk_logo_100.png" style="width: 100px">
 			</a>
 		</div>
+	</div>
 	</nav>
 
 	<main ng-controller="MainCtrl">
@@ -28,12 +30,33 @@
 						</div>
 						<button type="submit" class="btn btn-default">Save Question</button>
 					</form>
+					<br>
+					<div class="container-fluid">
+						<div class="row">
+							<img ng-click="play()" class="col-xs-3" src="img/circle_start_pink.png" style="cursor: pointer">
+							<div class="col-xs-1"></div>
+							<img ng-click="pause()" class="col-xs-3" src="img/pause_pink.png" style="cursor: pointer">
+							<div class="col-xs-1"></div>
+							<img ng-click="stop()" class="col-xs-3" src="img/square_pink.png" style="cursor: pointer">
+							<div class="col-xs-1"></div>
+						</div>
+						<br>
+						<div class="form-group">
+							<label class="col-sm-4">Progress</label>
+							<div class="col-sm-8">
+								<div class="input-group">
+									<input ng-model="sound.progress" class="form-control" type="range" min="0" max="1" step="0.01">
+									<div>Current Time: {{sound.currentTime | trackTime}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-sm-8">
 					<label>Q&A</label>
 					<div class="row" ng-repeat="q in questions track by $index" ng-mouseenter="showButton=true" ng-mouseleave="showButton=!showButton">
 						<div class="col-xs-10">
-							<div>Question {{$index}}:</div>
+							<div>Question {{$index+1}}:</div>
 							<div>{{q.question}}</div>
 							<div>{{q.answer}}</div>
 							<br>							
@@ -52,6 +75,7 @@
 <script type="text/javascript" src='vendors/jquery/dist/jquery.min.js'></script>
 <script type="text/javascript" src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src='vendors/angular/angular.min.js'></script>
+<script type="text/javascript" src="vendors/angular-audio/angular.audio.js"></script>
 
 <script type="text/javascript" src="js/index.js"></script>
 </body>
