@@ -51,7 +51,7 @@
 				</div>
 				<div class="col-sm-8">
 					<label>Q&A</label>
-					<div class="row" ng-repeat="q in questions track by $index" ng-mouseenter="showButton=true" ng-mouseleave="showButton=!showButton">
+					<div class="row" ng-repeat="q in questions track by $index" ng-mouseenter="showButton=true" ng-mouseleave="showButton=!showButton" style="display: flex; align-items: center">
 						<div class="col-xs-10">
 							<div>Question {{$index+1}}:</div>
 							<div>{{q.question}}</div>
