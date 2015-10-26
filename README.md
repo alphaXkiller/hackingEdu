@@ -5,5 +5,3 @@ It's a webapp can read out the note you write. You can listen to you note when y
 
 #Link: http://hackingedudev1.eu-gb.mybluemix.net/
 Server is running on IBM bluemix and using Mongodb. DB is hosted by Compose. It's using IBM watson text to speech service. Due to it's an trial account, it will only work for 30 days.
-
-#Cannot run on any version of node.js which is above 0.12.7
